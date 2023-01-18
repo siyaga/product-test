@@ -1,5 +1,5 @@
 // tidak perlu di panggil lagi: 'pakesaja yang sudah ada'
-// 'use strict'; // single instance
+'use strict'; // single instance
 
 const passport = require('passport');
 let JwtStrategy = require('passport-jwt').Strategy,

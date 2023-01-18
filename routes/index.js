@@ -16,6 +16,11 @@ router.get('/logout', loginController.logout);
 
 router.get('/user', loginController.getUser);
 
+// JWT Authentication error
+// ,passport.authenticate("jwt", {
+//   session: false
+// })
+
 // Product
 router.post('/products/create', upload.array('image',1), productController.createProduct);
 router.get('/products',productController.getProduct);

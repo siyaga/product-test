@@ -23,36 +23,43 @@ const login = async (req, res) => {
               userid: data.id,
               email: req.body.email
             };
+            // let token = jwt.sign(
+            //   payload,
+            //   config.secret, {
+            //     expiresIn: '12h'
+            //   }
+  
+            // )
+
             let token = jwt.sign(
               payload,
-              config.secret, {
-                expiresIn: '12h'
-              }
-  
-            )
+              "secretkey",
+              { expiresIn: "12h" },
+              (err, token) => res.cookie('auth', token).json({ token })
+            );
             
             let dt = new Date();
             dt.setHours(dt.getHours() + 12);
-            
-            res.json({
-              success: true,
-              token: token,
-              expired: dt.toLocaleDateString() + ' ' + dt.toLocaleTimeString()
-            });
+          return   token
+          // return  res.json({
+          //     success: true,
+          //     token: token,
+          //     expired: dt.toLocaleDateString() + ' ' + dt.toLocaleTimeString()
+          //   });
           } else {
-            res.json({
+            return  res.json({
               message: "email and password worng"
             })
           }
   
         } else {
-          res.json({
-            message: "email and password worng"
+          return res.json({
+            message: "email tidak di temukan"
           });
         }
       })
       .catch(err => {
-        res.json({
+        return   res.json({
           message: "Error"
         });
       });
