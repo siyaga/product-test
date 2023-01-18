@@ -18,9 +18,8 @@ db.products = require('./products')(sequelize, Sequelize);
 db.userdetails = require('./userdetail')(sequelize, Sequelize);
 db.users = require('./users')(sequelize, Sequelize);
 
-db.products.hasMany(db.products, {foreignKey:'user_id'});
-db.users.belongsTo(db.users,{foreignKey:'id'});
-db.userdetails.belongsTo(db.userdetails, {foreignKey:'user_id'});
+db.products.belongsTo(db.users, {foreignKey:'user_id'});
+db.userdetails.belongsTo(db.users, {foreignKey:'user_id'});
 
 
 module.exports = db;
